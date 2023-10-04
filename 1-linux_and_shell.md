@@ -28,11 +28,9 @@
 - `^e`: Move cursor to the *last point* of line
 - `^r`: Search history
 
-
-`cd`: Change Directory
-`pwd`: Print Working Directory
-
 ```bash
+# `cd`: Change Directory
+# `pwd`: Print Working Directory
 $ num=0;while true;do ((num+=1));echo ${num};sleep 1;done
 1
 2
