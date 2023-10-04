@@ -12,10 +12,10 @@
 
 |Name|Feature|Reference File|Program|Prompt|
 |---|---|---|---|---|
-|sh (Bourne Shell)|First Unix Shell|~/.profile|/bin/sh|$ (General-user) <br> # (root-user)|
-|csh (C Shell)|Distributed for Unix BSD|~/.cshrc|/bin/csh|% (G) <br> # (root)|
-|ksh (Korn Shell)|Faster than csh and compatible with script written by sh|~/.ksh|/bin/ksh|$ (G) # (root)|
-|bash (Bourne-Again Shell)|Linux Default Shell in GNU Project|/etc/profile<br>/etc/bashrc<br>~/.bash_profile<br>~/.profile<br>~/.bashrc|/bin/bash|$ (G) # (root)|
+|sh (Bourne Shell)|First Unix Shell|\~/.profile|/bin/sh|$ (General-user) <br> # (root-user)|
+|csh (C Shell)|Distributed for Unix BSD|\~/.cshrc|/bin/csh|% (G) <br> # (root)|
+|ksh (Korn Shell)|Faster than csh and compatible with script written by sh|\~/.ksh|/bin/ksh|$ (G) # (root)|
+|bash (Bourne-Again Shell)|Linux Default Shell in GNU Project|/etc/profile<br>/etc/bashrc<br>\~/.bash_profile<br>\~/.profile<br>\~/.bashrc|/bin/bash|$ (G) # (root)|
 
 ## GUI and CLI
 - GUI (Graphic User Interface) uses X-Window (X11)
