@@ -147,15 +147,173 @@ $ tar -xvzf TV.tgz # unzip
 
 ### 1
 
+- ps (Process Status): Output information of currently running process in system
+
+> Process
+> - 프로그램 실행 시, 프로그램 자체와 작업 내용이 메모리에 올라가서 실행되는 작업 단위
+> - 실행할 내용을 메모리에 올려놓고, CPU는 메모리에서 실행할 내용을 읽어다가 실행을 하는 방식
+
+```bash
+$ ps -ef
+# UID means username who runs the process
+# PID means process ID
+# PPID means parent process ID
+# STIME means start time
+$ ps aux
+# prints %CPU, %MEM
+# VSZ means virtual memory usage
+# RSS means real memory usage
+$ ps axfwwwww
+# informations are not truncated and it supports tree structure
+```
+
+- pstree (Process Status TREE): Output the information using tree structure
+
 ### 2
+
+- top: Output a list of processes every constant time with refresh
+- nohup (NO HangUPs): run shell script file as a format of daemon, redirect stdout to selected file
+
+> daemon: once running, its program continues in background
+
+```bash
+$ nohup echo "Bash Coommand"
+nohup: ignoring input and appending output to 'nohup.out'
+$ cat nohup.out
+Bash Command
+```
+
+- kill: terminate process by sending selected signal to process
+
+```bash
+# INT and TERM help process to be securely terminated
+# KILL
+$ kill -2 <pid> # kill -INT <pid>
+$ kill -15 <pid> # kill -TERM <pid>
+# zombie process never die after INT and TERM
+$ kill -9 <pid> # kill -KILL <pid>
+
+```
 
 ## Network
 
 ### 1
 
+- ifconfig (InterFace CONFIGuration): Configuration and Activation/Deactivation of Network interface
+- ip: Configuration and Search ip-related information
+
+```bash
+$ ifconfig
+$ ip address show
+
+$ ifconfig eth0
+$ ip address show eth0
+$ ip ad sh eth0 
+```
+
+- netstat (NETwork STATistics): Output the statistics and connection state of network protocol
+- ss (Socket Statistics): Output the statistics and connection state of network socket
+
+```bash
+$ netstat -nltpu # TCP and UDP
+$ netstat -nltp # exclude UDP
+$ netstat -ltp 
+# n shows IP or port number instead of defined or domain name
+# l means showing sockets currently listening (server always waits for user login by opening certain ports)
+# t means tcp, u means udp
+$ vi /etc/services 
+
+$ ss -nltpu
+
+$ netstat -tanu
+$ ss -tanu
+```
+
 ### 2
 
+- iptables: tool for packet filtering, used for firewall constraining packet or NAT (Network Address Translation)
+  - **firewall initially blocks all inbound connections and opens only necessary ones**
+- utw (Uncomplicated FireWall): tool for easy-control of iptables
+
+
+```bash
+$ iptables -nL
+# n shows IP or port number instead of defined or domain name
+# L means list
+## Chain INPUT - Rule appliled to inbound connection (from outside to the server)
+## Chain FORWARD - Rule applied to layover connection (via the server)
+## Chain OUTPUT - Rule applied to outbound coonection (from the server to outside)
+# Rules are applied by top-down order
+$ systemctl status iptables
+
+```
+
+- ping: tool for confirming response of ICMP protocol
+
+```bash
+$ cat /etc/hosts
+127.0.0.1 localhost
+...
+
+$ ping -c 5 localhost
+PING localhost (127.0.0.1) 56(84) bytes of data.
+64 bytes from localhost (127.0.0.1): icmp_seq=1 ttl=64 time=0.024 ms
+64 bytes from localhost (127.0.0.1): icmp_seq=2 ttl=64 time=0.023 ms
+64 bytes from localhost (127.0.0.1): icmp_seq=3 ttl=64 time=0.018 ms
+64 bytes from localhost (127.0.0.1): icmp_seq=4 ttl=64 time=0.024 ms
+64 bytes from localhost (127.0.0.1): icmp_seq=5 ttl=64 time=0.023 ms
+
+--- localhost ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 4103ms
+rtt min/avg/max/mdev = 0.018/0.022/0.024/0.002 ms
+
+```
+
 ### 3
+
+- wget (World wide web + GET): tools for taking contents from web server
+- curl (Client for URLs): tools for sending data using various protocols
+
+```bash
+$ wget <file_address>
+$ curl -Lkso /dev/null -w "%{http_code}\n" https://gmail.com
+200
+# L means following link
+# k means ignoring identification of http protocol
+# s means skipping statistics
+# o means selecting output file (/dev/null)
+## /dev/null means taking only output and throwing output file
+
+$ curl https://gmail.com
+<HTML><HEAD><meta http-equiv="content-type" content="text/html;charset=utf-8">
+<TITLE>301 Moved</TITLE></HEAD><BODY>
+<H1>301 Moved</H1>
+The document has moved
+<A HREF="https://mail.google.com/mail/u/0/">here</A>.
+</BODY></HTML>
+$ curl -Lko /dev/null -w "%{http_code}\n" https://gmail.com
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   230  100   230    0     0    764      0 --:--:-- --:--:-- --:--:--   766
+100   370    0   370    0     0    354      0 --:--:--  0:00:01 --:--:--   675
+  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0
+100   587  100   587    0     0    383      0  0:00:01  0:00:01 --:--:--  573k
+100  571k    0  571k    0     0   277k      0 --:--:--  0:00:02 --:--:--  277k
+```
+
+- route: tools for printing and changing a route information (routing table) of network
+
+```bash
+$ route
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         _gateway        0.0.0.0         UG    0      0        0 eno8303
+10.178.97.0     0.0.0.0         255.255.255.0   U     0      0        0 eno8303
+172.17.0.0      0.0.0.0         255.255.0.0     U     0      0        0 docker0
+172.18.0.0      0.0.0.0         255.255.0.0     U     0      0        0 br-f7b63e7d8fc8
+172.19.0.0      0.0.0.0         255.255.0.0     U     0      0        0 br-e35ce6e85ac4
+# -n option is identical with netstat
+```
 
 ## Search
 
