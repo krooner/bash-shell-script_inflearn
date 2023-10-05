@@ -438,8 +438,59 @@ kso.kim  s000     -                Wed10       - w
   
 ## ETC
 
-- date
-- seq (SEQuence)
-- more
+- date: output current day and time
+
+```bash
+$ date
+Thu Oct  5 05:52:35 UTC 2023
+$ date -d '-1 day'
+Wed Oct  4 05:53:07 UTC 2023
+$ date -d '1 day ago'
+Wed Oct  4 05:53:38 UTC 2023
+$ date -d '1 day'
+Fri Oct  6 05:53:54 UTC 2023
+
+$ date '+%Y-%m-%d %H:%M:%S'
+2023-10-05 05:55:56
+$ date '+%Y%m%d'
+20231005
+```
+
+- seq (SEQuence): tool for printing number with defined order
+
+```bash
+$ seq 1 5
+1
+2
+3
+4
+5
+$ seq -w 1 10
+01
+02
+03
+04
+05
+06
+07
+08
+09
+10
+$ seq -f %03g 1 10
+001
+002
+003
+004
+005
+006
+007
+008
+009
+010
+```
+
+- more: tool for printing file content in screen
+- watch: tool for re-executing command every defined time and printing the result on the screen
+- crontab: tool for printing or editing the contents of job scheduler in linux
 
 ## Miscellaneous
