@@ -386,6 +386,60 @@ $ history
 
 ## I/O 
 
+- redirection: send standard stream (stdin, stdout, stderr) using inequality sign
+- echo: tool for string output
+
+```bash
+$ <command> <redirection_symbol> <file_name>
+$ echo b > a # overwrite string to file (possible error)
+$ cat a
+b
+$ echo zzz >> a # append string
+$ cat a
+b
+zzz
+$ echo kkk >| a # forcely create file (no error)
+$ cat a
+kkk
+```
+
+- chmod (CHange MODe): tool for changing access permission of file or directory
+
+```bash
+$ ls -al
+drwxr-xr-x   4 kso.kim  staff      128 Sep 26 10:45 opencv
+lrwxr-xr-x   1 kso.kim  staff       12 Oct  4 14:50 symbolic-link.txt -> hardlink.txt
+-rw-r--r--   1 kso.kim  staff       12 Oct  4 14:48 testfile
+-rw-r--r--   1 kso.kim  staff       11 Oct  4 15:00 testfile2
+
+# first rwx is permission for file owner
+# second rwx is permission for user's group
+# last rwx is permission for others (neither file owner nor user's group)
+
+$ chmod <permission_info> <file_name>
+```
+  
+- chown (CHange the OWNer of a file): tool for changing ownership of file
+
+```bash
+$ chown <user_name>:<group_name> <file_or_directory_name>
+```
+  
+- sudo (SUperuser DO): tool for executing commmand or program using security permission of root user
+- who: output list of currently logged in user in system
+
+```bash
+$ w
+11:17  up 1 day,  2:09, 2 users, load averages: 1.29 1.60 1.76
+USER     TTY      FROM              LOGIN@  IDLE WHAT
+kso.kim  console  -                Wed09   25:37 -
+kso.kim  s000     -                Wed10       - w
+```
+  
 ## ETC
+
+- date
+- seq (SEQuence)
+- more
 
 ## Miscellaneous
