@@ -317,7 +317,74 @@ default         _gateway        0.0.0.0         UG    0      0        0 eno8303
 
 ## Search
 
-## I/O
+- find: search file using selected file name or regular expression
+
+```bash
+$ find <option> <path_start_to_look_for> <expression>
+$ ls 
+nohup.out
+$ find ./ -name nohup.* # * asterisk matches with charaters 
+nohup.out
+$ find ./ -name no?up.out # ? question mark matches with a single character
+nohup.out
+```
+
+- which: tool for finding commands in directory registered in environment variable PATH
+
+```bash
+$ echo ${PATH}
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+$ which ls
+/usr/bin/ls
+$ which df
+/usr/bin/df
+$ which find
+/usr/bin/find
+$ which ps
+/usr/bin/ps
+```
+
+- grep (Global / Regular Expression / Print): tool for text search, output line matched with regex in file or stdin 
+
+```bash
+$ grep <option> <string_to_find> <file_name>
+# string_to_find is case-sensitive: "Error" and "error" is different string
+$ grep -i "error" /var/log/*
+# -i option means case-insensitive
+$ grep -ir "error" /var/log/*
+# -r option means recursive: includes directory
+# -c option means count: how many target_string is included in target_file
+```
+
+- history: output/manipulate list of command execution
+
+```bash
+$ tail .bash_history
+ping -c 5 localhost
+curl -Lkso /dev/null -w "%{http_code}\n" https://gmail.com
+curl https://gmail.com
+curl -L https://gmail.com
+curl -Lko https://gmail.com
+curl -Lko /dev/null -w "%{http_code}\n" https://gmail.com
+route
+route -n
+exit
+ls
+$ history
+    1  exit
+    2  which bash
+    3  sh
+    4  ls
+    5  vim
+...
+  177  man grep
+  178  ls -al .bash_history 
+  179  tail -n 10 .bash_history 
+  180  tail .bash_history
+  181  history
+```
+
+## I/O 
 
 ## ETC
 
