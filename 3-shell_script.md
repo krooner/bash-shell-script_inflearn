@@ -71,6 +71,28 @@ Hello world
 
 ## If
 
+```bash
+if [condition_1]; then
+# following commands are executed if condition_1 is true
+elif [condition_2]; then
+# following commands are executed if condition_1 is false and condition_2 is true
+else
+# following commands are executed if both condition_1 and condition_2 are false
+fi
+
+$ [a == a] && echo ok || echo ng # single-line if
+```
+
+|Number comparison|Description|Char comparison|Description|File comparison|Description|
+|---|---|---|---|---|---|
+|||||||
+|||||||
+|||||||
+|||||||
+|||||||
+|||||||
+
+
 ## Case
 
 ## Iteration
