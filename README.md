@@ -1,1 +1,1 @@
-# bash_shell_script-inflearn
+# bash-shell-script_inflearn
